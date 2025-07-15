@@ -281,20 +281,6 @@
                             <p class="mt-2 text-gray-600 dark:text-gray-400">Developed and designed projects including <strong>Bangladesh 2.0</strong>, <strong>Kid’s School</strong>, <strong>Nature’s Platter</strong>, and <strong>DevBoard</strong>. <a href="https://github.com/minhaj14d" target="_blank" class="text-primary hover:underline">More projects on GitHub</a>.</p>
                         </div>
                     </div>
-                    <!-- Project 3: Design -->
-                    <div class="project-card bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md fade-in-up" data-category="design">
-                        <img src="https://placehold.co/600x400/6d28d9/ffffff?text=UI/UX+Design" alt="Project 3" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">Design</span>
-                                    <h3 class="mt-2 text-xl font-bold text-gray-900 dark:text-white">Mobile Banking App UI/UX</h3>
-                                </div>
-                                <a href="#" target="_blank" class="text-gray-400 hover:text-primary dark:hover:text-primary"><i data-lucide="figma" class="w-6 h-6"></i></a>
-                            </div>
-                            <p class="mt-2 text-gray-600 dark:text-gray-400">Created a complete UI/UX prototype for a mobile banking application in Figma, focusing on user-centric design and accessibility.</p>
-                        </div>
-                    </div>
                     <!-- Project 4: Full-Stack -->
                     <div class="project-card bg-white dark:bg-dark-card rounded-lg overflow-hidden shadow-md fade-in-up" data-category="web">
                         <img src="https://placehold.co/600x400/b45309/ffffff?text=Full-Stack+App" alt="Project 4" class="w-full h-48 object-cover">
@@ -308,27 +294,6 @@
                             </div>
                             <p class="mt-2 text-gray-600 dark:text-gray-400">A full-stack MERN application for managing university events, allowing clubs to post and students to register for events.</p>
                         </div>
-                    </div>
-                </div>
-
-                <!-- AI Project Idea Generator -->
-                <div class="mt-20 text-center fade-in-up">
-                    <div class="max-w-2xl mx-auto bg-white dark:bg-dark-card p-8 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                        <div class="flex items-center justify-center gap-2">
-                            <i data-lucide="lightbulb" class="w-8 h-8 text-amber-400"></i>
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">✨ AI Project Idea Generator</h3>
-                        </div>
-                        <p class="mt-3 text-gray-600 dark:text-gray-400">
-                            Got a topic in mind? Let AI brainstorm a project idea that combines my skills in data, design, and development.
-                        </p>
-                        <div class="mt-6 flex flex-col sm:flex-row gap-2">
-                            <input type="text" id="project-idea-input" placeholder="e.g., 'sustainable agriculture'" class="flex-grow px-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-primary focus:border-primary">
-                            <button id="generate-idea-btn" class="bg-primary text-white font-semibold px-6 py-2 rounded-md hover:bg-primary-focus transition-colors flex items-center justify-center gap-2">
-                                <span id="generate-idea-btn-text">Generate Idea</span>
-                                <div id="idea-loader" class="loader hidden"></div>
-                            </button>
-                        </div>
-                        <div id="project-idea-output" class="mt-6 text-left p-4 bg-gray-100 dark:bg-gray-800/50 rounded-md min-h-[100px] border border-gray-200 dark:border-gray-700 hidden"></div>
                     </div>
                 </div>
 
@@ -556,7 +521,7 @@
                             <div class="bg-teal-100 dark:bg-teal-900 p-3 rounded-full"><i data-lucide="mail" class="w-6 h-6 text-primary"></i></div>
                             <div>
                                 <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Email</h4>
-                                <a href="mailto:minhaj@example.com" class="text-gray-600 dark:text-gray-400 hover:text-primary">minhaj@example.com</a>
+                                <a href="mailto:minhajul0616@student.nstu.edu.bd" class="text-gray-600 dark:text-gray-400 hover:text-primary">minhajul0616@student.nstu.edu.bd</a>
                             </div>
                         </div>
                          <div class="flex items-start gap-4">
@@ -743,47 +708,7 @@
             };
 
             // --- AI Project Idea Generator ---
-            const generateIdeaBtn = document.getElementById('generate-idea-btn');
-            const projectIdeaInput = document.getElementById('project-idea-input');
-            const projectIdeaOutput = document.getElementById('project-idea-output');
-            const ideaLoader = document.getElementById('idea-loader');
-            const generateIdeaBtnText = document.getElementById('generate-idea-btn-text');
-
-            generateIdeaBtn.addEventListener('click', async () => {
-                const topic = projectIdeaInput.value.trim();
-                if (!topic) {
-                    projectIdeaOutput.textContent = 'Please enter a topic first.';
-                    projectIdeaOutput.classList.remove('hidden');
-                    return;
-                }
-
-                // Show loader and disable button
-                ideaLoader.classList.remove('hidden');
-                generateIdeaBtnText.classList.add('hidden');
-                generateIdeaBtn.disabled = true;
-                projectIdeaOutput.classList.add('hidden');
-
-                const prompt = `You are an expert project manager. I am Minhaj, an Applied Mathematics student skilled in Data Science (Python, ML), Web Development (React, Tailwind), and Graphic Design (Figma).
-                
-                Generate a creative and impactful project idea based on the following topic: "${topic}".
-                
-                The output should be a short, compelling project description. Include:
-                1. A catchy project title.
-                2. A brief summary of the project.
-                3. The key skills of mine that would be used (e.g., "This would use your skills in...").
-                
-                Format the response in simple HTML using <strong> for the title and <p> for the description.`;
-
-                const idea = await callGeminiAPI(prompt);
-                
-                projectIdeaOutput.innerHTML = idea;
-                projectIdeaOutput.classList.remove('hidden');
-
-                // Hide loader and re-enable button
-                ideaLoader.classList.add('hidden');
-                generateIdeaBtnText.classList.remove('hidden');
-                generateIdeaBtn.disabled = false;
-            });
+            // (Remove the entire AI Project Idea Generator block)
 
             // --- AI-Enhanced Contact Form ---
             const contactMessage = document.getElementById('contact-message');
